@@ -1,0 +1,110 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Büyük_Ünlü_Uyumu
+{
+    public partial class buuPencere : Form
+    {
+        public buuPencere()
+        {
+            InitializeComponent();
+        }
+
+        private void btnDenetle_Click(object sender, EventArgs e)
+        {
+            string kelime = txtbxKelime.Text;
+            char[] char_kelime = kelime.ToCharArray();
+            foreach (int l in char_kelime)
+            {
+                if (l == 'a' || l == 'ı' || l == 'u' || l == 'o')
+                {
+                    foreach (int i in char_kelime)
+                    {
+
+
+                        if (char_kelime.Contains('e'))
+                        {
+                            uymadı();
+                        }
+                        else if (char_kelime.Contains('i'))
+                        {
+                            uymadı();
+                        }
+                        else if (char_kelime.Contains('ü'))
+                        {
+                            uymadı();
+                        }
+                        else if (char_kelime.Contains('ö'))
+                        {
+                            uymadı();
+                        }
+                        else
+                        {
+                            uydu();
+                        }
+
+                    }
+                }
+                else if (l == 'e' || l == 'i' || l == 'ü' || l == 'ö')
+                {
+                    foreach (int i in char_kelime)
+                    {
+                        if (char_kelime.Contains('a'))
+                        {
+                            uymadı();
+                        }
+                        else if (char_kelime.Contains('ı'))
+                        {
+                            uymadı();
+                        }
+                        else if (char_kelime.Contains('u'))
+                        {
+                            uymadı();
+                        }
+                        else if (char_kelime.Contains('o'))
+                        {
+                            uymadı();
+                        }
+                        else
+                        {
+                            uydu();
+                        }
+                    }
+                }
+            }
+        }
+        public void uymadı()
+        {
+            txtUygunluk.Text = ("Bu kelime büyük ünlü uyumuna uygun değildir.");
+        }
+        public void uydu()
+        {
+            txtUygunluk.Text = ("Bu kelime büyük ünlü uyumuna uygundur.");
+        }
+        public void gecersiz()
+        {
+            txtUygunluk.Text = ("Bu kelime sesli harf içermemektedir.\nKural uygulanamaz.");
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            yokEt();
+        }
+        public void yokEt()
+        {
+            txtUygunluk.Text = "";
+            txtbxKelime.Text = "";
+        }
+
+        private void buuPencere_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
